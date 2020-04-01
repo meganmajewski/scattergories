@@ -26,7 +26,7 @@ const letters = [
 ];
 function App() {
   const [gameNum, setGameNum] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(180);
+  const [seconds, setSeconds] = useState<number>(5);
   const [gameOver, setGameOver] = useState<boolean>(true);
   const [letter, setLetter] = useState<string>("");
 
@@ -38,14 +38,10 @@ function App() {
         setSeconds(seconds => seconds - 1);
       }, 1000);
     }
-    if (seconds === 0) {
-      setGameOver(true);
-      setLetter("");
-      setSeconds(180);
-    }
+    if (seconds === 0) setGameOver(true);
     //@ts-ignore
     return () => clearInterval(interval);
-  }, [gameOver, seconds, letter]);
+  }, [gameOver, seconds]);
 
   const printList = () => {
     const list = data[gameNum];
@@ -60,13 +56,13 @@ function App() {
     });
   };
 
-  const newLetter = () => {
-    console.log("new letter");
-    const index = Math.floor(Math.random() * (20 - 1)) + 1;
-    setLetter(letters[index]);
+  const printLetter = () => {
+    if (!gameOver) {
+      const index = Math.floor(Math.random() * (20 - 1)) + 1;
+      setLetter(letters[index]);
+    }
   };
   const nextGame = () => {
-    newLetter();
     setGameOver(false);
     //start second count down;
     if (gameNum === 19) {
@@ -103,6 +99,7 @@ function App() {
         <button onClick={nextGame}>start game</button>
       </div>
     );
+  // else if(seconds !=== 0 && !gameOver)
   else return <div className="App">{showGame()}</div>;
 }
 

@@ -26,12 +26,10 @@
 }
 
 .newGame {
-  margin-top: 50px;
-  display: flex;
-  align-items: row;
-  justify-content: center;
+  button {
+    margin: auto;
+  }
 }
-
 button,
 .start-button {
   padding: 30px;

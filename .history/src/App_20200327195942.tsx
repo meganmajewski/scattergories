@@ -26,7 +26,7 @@ const letters = [
 ];
 function App() {
   const [gameNum, setGameNum] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(180);
+  const [seconds, setSeconds] = useState<number>(5);
   const [gameOver, setGameOver] = useState<boolean>(true);
   const [letter, setLetter] = useState<string>("");
 
@@ -41,7 +41,7 @@ function App() {
     if (seconds === 0) {
       setGameOver(true);
       setLetter("");
-      setSeconds(180);
+      setSeconds(5);
     }
     //@ts-ignore
     return () => clearInterval(interval);
@@ -103,6 +103,7 @@ function App() {
         <button onClick={nextGame}>start game</button>
       </div>
     );
+  // else if(seconds !=== 0 && !gameOver)
   else return <div className="App">{showGame()}</div>;
 }
 

@@ -26,10 +26,7 @@
 }
 
 .newGame {
-  margin-top: 50px;
   display: flex;
-  align-items: row;
-  justify-content: center;
 }
 
 button,

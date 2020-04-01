@@ -36,7 +36,7 @@ function App() {
     if (!gameOver) {
       interval = setInterval(() => {
         setSeconds(seconds => seconds - 1);
-      }, 1000);
+      }, 3000);
     }
     if (seconds === 0) {
       setGameOver(true);

@@ -103,6 +103,7 @@ function App() {
         <button onClick={nextGame}>start game</button>
       </div>
     );
+  // else if(seconds !=== 0 && !gameOver)
   else return <div className="App">{showGame()}</div>;
 }
 

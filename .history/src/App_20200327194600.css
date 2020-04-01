@@ -25,13 +25,9 @@
   text-align: center;
 }
 
-.newGame {
-  margin-top: 50px;
-  display: flex;
-  align-items: row;
-  justify-content: center;
+.newGame button {
+  margin: auto;
 }
-
 button,
 .start-button {
   padding: 30px;
