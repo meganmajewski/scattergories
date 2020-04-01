@@ -91,7 +91,7 @@ function App() {
         </div>
         <div className="clear">
           <button className="start-button" onClick={nextGame}>
-            Next Game
+            Skip This Game
           </button>
         </div>
       </div>
