@@ -30,7 +30,7 @@ function App() {
   const [gameOver, setGameOver] = useState<boolean>(true);
   const [letter, setLetter] = useState<string>("");
   const [response, setResponse] = useState("");
-  const ENDPOINT = "http://127.0.0.1:4001";
+  const ENDPOINT = "https://scattegories.herokuapp.com:4001";
   useEffect(() => {
     const socket = io(ENDPOINT);
     //@ts-ignore
