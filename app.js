@@ -1,9 +1,9 @@
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
-
 const port = process.env.PORT || 4001;
 const index = require("./routes/index");
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -26,6 +26,7 @@ const getApiAndEmit = socket => {
 };
 let interval;
 const path = require("path");
+app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "build/")))
 app.use(index);
 

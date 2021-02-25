@@ -1,3 +1,4 @@
+const database = require('../db/database');
 const express = require("express");
 const router = express.Router();
 const path = require("path");
@@ -6,6 +7,14 @@ const path = require("path");
 router.get("/", (_, res) =>
   res.sendFile(path.join(__dirname, "build", "index.html"))
 )
+router.get('/answers', (_, res) => {
+  database.getAllAnswers()
+  res.send({response: {}}).status(200);
+})
+router.post('/answers', async (req, res) => {
+  await database.addOneAnswer(req.body)
+  res.send().status(200);
+})
 router.get("/game", (req, res) => {
   res.send({ response: "I am alive" }).status(200);
 });

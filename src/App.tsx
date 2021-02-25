@@ -50,7 +50,7 @@ function App() {
     if (seconds === 0) {
       setGameOver(true);
       setLetter("");
-      setSeconds(180);
+      setSeconds(210);
     }
     //@ts-ignore
     return () => clearInterval(interval);
