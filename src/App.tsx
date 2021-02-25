@@ -60,7 +60,7 @@ function App() {
     const list = data[gameNum];
     const index = gameNum;
     //@ts-ignore
-    return list[index].map((cat, index) => {
+    return list[index + 1].map((cat, index) => {
       return (
         <li className="list-item" key={index}>
           {cat}
