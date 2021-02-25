@@ -8,7 +8,7 @@ const index = require("./routes/index");
 const app = express();
 
 const server = http.createServer(app);
-const io = socketIo(server, {cors: { origin: "http://localhost:3000", methods: ['GET', 'POST']}});
+const io = socketIo(server, {cors: { origin:["http://localhost:3000", "https://scattegories.herokuapp.com/" ], methods: ['GET', 'POST']}});
 
 // post the category answer - save to some db
 //  - save answer per user 
