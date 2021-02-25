@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import data from "./categories.json";
-
+import { io } from "socket.io-client";
 const letters = [
   "A",
   "B",
@@ -29,6 +29,15 @@ function App() {
   const [seconds, setSeconds] = useState<number>(180);
   const [gameOver, setGameOver] = useState<boolean>(true);
   const [letter, setLetter] = useState<string>("");
+  const [response, setResponse] = useState("");
+  const ENDPOINT = "http://127.0.0.1:4001";
+  useEffect(() => {
+    const socket = io(ENDPOINT);
+    //@ts-ignore
+    socket.on("FromAPI", data => {
+      setResponse(data);
+    });
+  }, []);
 
   useEffect(() => {
     //@ts-ignore
@@ -51,7 +60,7 @@ function App() {
     const list = data[gameNum];
     const index = gameNum;
     //@ts-ignore
-    return list[index + 1].map((cat, index) => {
+    return list[index].map((cat, index) => {
       return (
         <li className="list-item" key={index}>
           {cat}
@@ -80,18 +89,21 @@ function App() {
     return (
       <div className="list">
         <div className="left first">
-          <h1>List #{gameNum + 1}</h1>
+          <h1>List #{gameNum}</h1>
           <div>
+           response: {response}
             <ol>{printList()}</ol>
           </div>
         </div>
         <div className="left">
           <h2>Letter</h2>
           <div className="letter">{letter}</div>
+          <h2>Time Remaining</h2>
+          {seconds}
         </div>
         <div className="clear">
           <button className="start-button" onClick={nextGame}>
-            Skip This Game
+            Next Game
           </button>
         </div>
       </div>
