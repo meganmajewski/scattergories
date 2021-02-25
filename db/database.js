@@ -20,8 +20,12 @@ module.exports = {
       client.end();
     });
   },
-  addOneAnswer: async (body) => {
-    const query = 'INSERT INTO answers (gameId, userId, categoryId, input) VALUES(' + body.gameId +", " + body.userId +", " + body.categoryId +", '" + body.input  + "')"
+  addAnswers: async (body) => {
+    let valueArray ="";
+    body.map((answer) => valueArray += '(1, 1, ' + answer.categoryId +", '" + answer.input  + "'),");
+
+    const query = 'INSERT INTO answers (gameId, userId, categoryId, input) VALUES '+valueArray.slice(0, valueArray.length - 1)+";"
+    console.log('query', query);
     await client.query(query, (err, res) => {
       if (err) throw err;
       client.end();

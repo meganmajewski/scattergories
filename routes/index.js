@@ -12,8 +12,13 @@ router.get('/answers', (_, res) => {
   res.send({response: {}}).status(200);
 })
 router.post('/answers', async (req, res) => {
-  await database.addOneAnswer(req.body)
-  res.send().status(200);
+  try {
+    database.addAnswers(req.body)
+    res.send().status(200);
+  }
+  catch(e) {
+    console.log(e);
+  }
 })
 router.get("/game", (req, res) => {
   res.send({ response: "I am alive" }).status(200);

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import data from "./categories.json";
 import { io } from "socket.io-client";
+import CategoryList from "./components/CategoryList";
+import Timer from "./components/Timer";
+import axios from "axios";
 const letters = [
   "A",
   "B",
@@ -24,13 +27,21 @@ const letters = [
   "T",
   "W"
 ];
+export interface Answer {
+  input: string,
+  categoryId:number
+}
 function App() {
   const [gameNum, setGameNum] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(180);
   const [gameOver, setGameOver] = useState<boolean>(true);
+
   const [letter, setLetter] = useState<string>("");
   const [response, setResponse] = useState("");
+  const [answers, setAnswers] = useState<Answer[]>([] as Answer[]);
+
+ 
   const ENDPOINT = "https://scattegories.herokuapp.com";
+ 
   useEffect(() => {
     const socket = io(ENDPOINT);
     //@ts-ignore
@@ -39,32 +50,23 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    //@ts-ignore
-    let interval = null;
-    if (!gameOver) {
-      interval = setInterval(() => {
-        setSeconds(seconds => seconds - 1);
-      }, 1000);
-    }
-    if (seconds === 0) {
-      setGameOver(true);
-      setLetter("");
-      setSeconds(210);
-    }
-    //@ts-ignore
-    return () => clearInterval(interval);
-  }, [gameOver, seconds, letter]);
+  function gameIsOver() {
+    axios.post('/answers', answers);
+    setGameOver(true);
+  }
 
+  function setAnswerAtIndex(answer: Answer) {
+   setAnswers((prevAnswer) => [
+     ...prevAnswer.filter((answer_loop) => answer_loop.categoryId !== answer.categoryId),
+     answer
+   ]);
+  }
   const printList = () => {
-    const list = data[gameNum];
-    const index = gameNum;
+    const list = data[gameNum - 1];
     //@ts-ignore
-    return list[index + 1].map((cat, index) => {
+    return list[gameNum].map((cat, index) => {
       return (
-        <li className="list-item" key={index}>
-          {cat}
-        </li>
+        <CategoryList index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} /> 
       );
     });
   };
@@ -98,8 +100,7 @@ function App() {
         <div className="left">
           <h2>Letter</h2>
           <div className="letter">{letter}</div>
-          <h2>Time Remaining</h2>
-          {seconds}
+          <Timer gameOver={gameOver} setGameOverCallback={gameIsOver}/>
         </div>
         <div className="clear">
           <button className="start-button" onClick={nextGame}>
