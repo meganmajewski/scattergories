@@ -21,6 +21,8 @@ const getApiAndEmit = socket => {
   socket.emit("FromAPI", response);
 };
 let interval;
+const path = require("path");
+app.use(express.static(path.join(__dirname, "build/")))
 app.use(index);
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
