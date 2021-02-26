@@ -9,11 +9,11 @@ import liljohn from "./lilJohn.svg";
 import logo from "./logo_2.svg";
 
 const letters = [
+  "L",
   "T",
   "S",
   "B",
   "G",
-  "L",
   "R",
   "C",
   "E",
