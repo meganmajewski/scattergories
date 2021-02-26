@@ -82,7 +82,6 @@ function App() {
   };
 
   const newLetter = () => {
-    console.log("new letter");
     const index = Math.floor(Math.random() * (20 - 1)) + 1;
     setLetter(letters[index]);
   };
