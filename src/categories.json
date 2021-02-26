@@ -1,7 +1,7 @@
 [
   {
     "1": [
-      "Herbs",
+      "Spices/Herbs",
       "Items that are frozen",
       "Celebrities",
       "Rivers",
@@ -9,7 +9,7 @@
       "Things that are yellow",
       "Trees",
       "Marching band instruments",
-      "College subjects",
+      "College majors",
       "Dishes made from pasta"
     ]
   },
@@ -20,8 +20,8 @@
       "Types of sports",
       "Bad habits",
       "Parts of the human body",
-      "Old fashioned girl's name",
-      "Ethnic dishes",
+      "A girl's name",
+      "Ethnic foods",
       "Types of transportation",
       "School supplies",
       "Items found in a library"
@@ -33,22 +33,22 @@
       "Flowers",
       "Types of shoes",
       "Halloween costumes",
-      "Foods found in a submarine sandwhich",
-      "Politicians",
+      "Foods found in a submarine",
+      "World leaders/politicians",
       "Flavors of ice cream",
       "Reasons a child is grounded",
       "Television actors",
-      "Semi-precious gemstones"
+      "Stones/gems"
     ]
   },
   {
     "4": [
       "Country foods",
-      "Quarantine Activites",
+      "Quarantine activites",
       "Animals in zoos",
-      "Things in the circus",
+      "Things at a circus",
       "Things found in a park",
-      "Book authors",
+      "Authors",
       "Countries",
       "Things that are round",
       "Types of clothing",
@@ -58,7 +58,7 @@
   {
     "5": [
       "Mammals",
-      "Countries",
+      "Baby foods",
       "Types of relatives",
       "Holidays around the world",
       "Fruits",
@@ -66,7 +66,7 @@
       "Colors",
       "Sports stars",
       "Restaurants",
-      "Villains"
+      "Villains/monsters"
     ]
   },
   {
@@ -93,13 +93,13 @@
       "Sweet things",
       "Dental procedures",
       "Perfumes",
-      "Types off candy",
+      "Types of candy",
       "Accessories"
     ]
   },
   {
     "8": [
-      "Things used by the handicapped",
+      "Things used by the differently abled",
       "Sounds animals make",
       "Things that are hot",
       "Breakfast foods",
@@ -118,19 +118,19 @@
       "Professions",
       "Things that are cold",
       "Toppings for pizza",
-      "Colleges",
+      "Colleges/universities",
       "Things with spots",
-      "Car Models",
+      "Car models",
       "Furniture",
       "Ways to relax"
     ]
   },
   {
     "10": [
-      "Ethnicity's",
+      "Ethnicities",
       "Things found in the sky",
-      "Figures from history",
-      "Types of drugs",
+      "Historical figures",
+      "Types of medicine/drugs",
       "Types of bread",
       "Fictional characters",
       "Items on a lunch menu",
@@ -144,80 +144,80 @@
       "Crimes",
       "Vanilla items",
       "Types of popcorn",
-      "Large ticket items",
+      "Items you save up to buy",
       "Items in Grandma's kitchen",
       "Dog toys",
       "Items found in the backyard",
       "Sticky things",
-      "Awards",
+      "Awards/ceremonies",
       "Types of vehicles"
     ]
   },
   {
     "12": [
-      "a boys name",
-      "a river",
-      "an animal",
-      "things that are cold",
-      "TV Shows",
-      "things that grow",
+      "A boy's name",
+      "Rivers",
+      "Animals",
+      "Things that are cold",
+      "TV shows",
+      "Things that grow",
       "Things that are black",
-      "school subjects",
-      "movie titles",
-      "musical Instruments"
+      "School subjects",
+      "Movie titles",
+      "Musical instruments"
     ]
   },
   {
     "13": [
       "Bodies of water",
-      "cartoon characters",
-      "a relative",
-      "games",
-      "things that are hot",
-      "heros",
-      "colors",
-      "provinces or states",
-      "sports equipment",
-      "tools"
+      "Cartoon characters",
+      "Famous duos and trios",
+      "Games",
+      "Things that are hot",
+      "Heroes",
+      "Things found in a desk",
+      "Vacation spots",
+      "Sports equipment",
+      "Diseases"
     ]
   },
   {
     "14": [
-      "breakfast foods",
-      "gifts",
-      "things in the kitchen",
-      "nick names",
-      "hobbies",
-      "expressions",
-      "cities",
-      "items in a catalog",
-      "things that bounce",
-      "things in a park"
+      "Words associated with money",
+      "Gifts",
+      "Things in the kitchen",
+      "Nicknames",
+      "Hobbies",
+      "Expressions",
+      "U.S. cities",
+      "Items in a catalog",
+      "Things that jump/bounce",
+      "Items in a vending machine"
     ]
   },
   {
     "15": [
-      "musical instruments",
-      "pizza toppings",
-      "colleges / univresities",
-      "historical figures",
-      "fictional characters",
-      "kinds of candy",
-      "something you keep hidden",
-      "things with tails",
-      "crimes",
-      "items you save up to buy"
+      "Musical groups",
+      "Things that you wear",
+      "Beers",
+      "Famous females",
+      "People in uniform",
+      "Languages",
+      "Something you keep hidden",
+      "Junk food",
+      "Companies",
+      "Notorious people"
     ]
   },
   {
     "16": [
-      "things in a grocery store",
-      "reasons to quit your job",
-      "tourist attraction",
-      "diet foods",
-      "things in a hospital",
-      "something green",
-      "weekend activity",
+      "Things in a grocery store",
+      "Reasons to quit your job",
+      "Tourist attractions",
+      "Diet foods",
+      "Things in a hospital",
+      "Something green",
+      "Weekend activity",
       "Christmas songs",
       "Word that ends in N",
       "Seafood"
@@ -225,58 +225,100 @@
   },
   {
     "17": [
-      "things found at a bar",
-      "names used in songs",
-      "places in europe",
-      "olympic events",
-      "math terms",
-      "things to do at a party",
-      "kinds of soup",
-      "things you do at work",
-      "things you shouldnt touch",
-      "animal noises"
+      "Things found at a bar",
+      "Names used in songs",
+      "Places in europe",
+      "Olympic events",
+      "Math terms",
+      "Things to do at a party",
+      "Kinds of soup",
+      "Things you do at work",
+      "Things you shouldn't touch",
+      "Animal noises"
     ]
   },
   {
     "18": [
-      "salty snacks",
-      "honeymoon spots",
-      "things to do on a date",
-      "things you do every day",
-      "things you get in the mail",
-      "things you sit on",
-      "job title",
-      "things you take while camping",
-      "dog breeds",
-      "hobbies"
+      "Salty snacks",
+      "Honeymoon spots",
+      "Things to do on a date",
+      "Things you do every day",
+      "Things you get in the mail",
+      "Things you sit on",
+      "Job titles",
+      "Things you take while camping",
+      "Dog breeds",
+      "Household chores"
     ]
   },
   {
     "19": [
-      "u.s. cities",
-      "product names",
-      "vegetables",
-      "things you throw away",
-      "appliances",
-      "cartoon characters",
-      "store names",
-      "personality traits",
-      "4 letter word",
-      "items in a refrigerator"
+      "Foreign cities",
+      "Product names",
+      "Gifts/presents",
+      "Things you throw away",
+      "Appliances",
+      "Terms of endearment",
+      "Store names",
+      "Personality traits",
+      "4-letter words",
+      "Items in a refrigerator"
     ]
   },
   {
     "20": [
-      "farm animals",
-      "street names",
-      "things on a beach",
-      "car parts",
-      "song titles",
-      "villains/monsters",
-      "cosmetics/toiletries",
-      "medicine/drugs",
-      "things made of metal",
-      "things you plug in"
+      "Kinds of dances",
+      "Street names",
+      "Things at the beach",
+      "Car parts",
+      "Song titles",
+      "Tropical locations",
+      "Cosmetics/toiletries",
+      "Things in a medicine cabinet",
+      "Things made of metal",
+      "Things you plug in"
+    ]
+  },
+  {
+    "21": [
+      "College majors",
+      "Dairy products",
+      "Things in a souvenir shop",
+      "Items in your purse/wallet",
+      "World records",
+      "Capitals",
+      "Items in a suitcase",
+      "Fish",
+      "Terms of measurement",
+      "Items in this room"
+    ]
+  },
+  {
+    "22": [
+      "Book titles",
+      "Sandwiches",
+      "Cooking utensils",
+      "Reptiles/amphibians",
+      "Parks",
+      "Leisure activities",
+      "Things you're allergic to",
+      "Articles of clothing",
+      "Things found on a map",
+      "Athletes"
+    ]
+  },
+  {
+    "23": [
+      "Sports",
+      "Things you shout",
+      "Ways to get from here to there",
+      "Things you replace",
+      "Pro sports teams",
+      "Presidents",
+      "Things at a football game",
+      "Items on a dinner menu",
+      "Vegetables",
+      "Things found in basements"
     ]
   }
 ]
