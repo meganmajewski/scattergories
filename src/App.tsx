@@ -6,28 +6,29 @@ import CategoryList from "./components/CategoryList";
 import Timer from "./components/Timer";
 import axios from "axios";
 import liljohn from "./lilJohn.svg";
+import logo from "./logo_2.svg";
 
 const letters = [
-  "A",
+  "T",
+  "S",
   "B",
-  "C",
-  "D",
-  "E",
-  "F",
   "G",
+  "L",
+  "R",
+  "C",
+  "E",
+  "M",
+  "F",
+  "A",
   "H",
   "I",
   "J",
+  "P",
   "K",
-  "L",
-  "M",
   "N",
   "O",
-  "P",
-  "R",
-  "S",
-  "T",
-  "W"
+  "W",
+  "D",
 ];
 export interface Answer {
   userId: string,
@@ -56,7 +57,7 @@ function App() {
     const socket = io(ENDPOINT);
     //@ts-ignore
     socket.on("FromAPI", data => {
-      // setResponse(data);
+
     });
   }, []);
 
@@ -83,8 +84,10 @@ function App() {
   };
 
   const newLetter = () => {
+    const letter = letters[gameNum];
     const index = Math.floor(Math.random() * (20 - 1)) + 1;
-    setLetter(letters[index]);
+    setLetter(letter);
+
   };
   const nextGame = () => {
     newLetter();
@@ -101,6 +104,9 @@ function App() {
   const showGame = () => {
     return (
       <div className="list">
+        <div className="logo-container">
+          <img src={logo}/>
+        </div>
         <div className="left first">
           <div className="category-list">
             <h1><img className="liljohn" src={liljohn}/>Round {gameNum}</h1>
@@ -135,11 +141,7 @@ function App() {
     return (
       <div className="newGame">
         <div className="header">
-          <img src={liljohn}/>
-          <div className="titleContainer">
-            <h1>SCATTERGORIES</h1>
-            <h3><i>LABS EDITON</i></h3>
-          </div>
+          <img src={logo}/>
         </div>
         <div className="nameContainer">
         <div className="nameEntry">Enter your name:</div>
