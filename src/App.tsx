@@ -9,6 +9,7 @@ import liljohn from "./lilJohn.svg";
 import logo from "./logo_2.svg";
 
 const letters = [
+  "M",
   "L",
   "T",
   "S",
@@ -17,7 +18,6 @@ const letters = [
   "R",
   "C",
   "E",
-  "M",
   "F",
   "A",
   "H",
