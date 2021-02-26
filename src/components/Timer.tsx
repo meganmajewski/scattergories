@@ -4,7 +4,7 @@ interface Props {
     setGameOverCallback: ()=> void;
 }
 export default function Timer(props: Props): JSX.Element {
-    const [seconds, setSeconds] = useState<number>(4);
+    const [seconds, setSeconds] = useState<number>(3);
     useEffect(() => {
           //@ts-ignore
           let interval = null;

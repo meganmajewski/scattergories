@@ -7,19 +7,34 @@ const path = require("path");
 router.get("/", (_, res) =>
   res.sendFile(path.join(__dirname, "build", "index.html"))
 )
-router.get('/answers', (_, res) => {
-  database.getAllAnswers()
-  res.send({response: {}}).status(200);
-})
+router.get('/answers', async (_, res) => {
+  try {
+    const results = await database.getAllAnswers()
+    console.log(results);
+    res.send({response: {results}}).status(200);
+  } catch (e) {
+    console.log(e)
+  }
+}) 
 router.post('/answers', async (req, res) => {
   try {
-    database.addAnswers(req.body)
+    await database.addAnswers(req.body)
     res.send().status(200);
   }
   catch(e) {
     console.log(e);
   }
 })
+router.post('/users', async (req, res) => {
+  try{
+    database.addUsers(req.body)
+    res.send().status(200)
+  }
+  catch(e) {
+    console.log(e);
+  }
+})
+
 router.get("/game", (req, res) => {
   res.send({ response: "I am alive" }).status(200);
 });

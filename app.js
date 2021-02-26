@@ -20,7 +20,6 @@ const getApiAndEmit = socket => {
   // # of answers per person - ex: 1/12 answered 
   const response = new Date();
   console.log('emit')
-  //ss
   // Emitting a new message. Will be consumed by the client
   socket.emit("FromAPI", response);
 };

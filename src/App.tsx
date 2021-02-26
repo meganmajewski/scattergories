@@ -28,16 +28,24 @@ const letters = [
   "W"
 ];
 export interface Answer {
+  userId: string,
   input: string,
-  categoryId:number
+  categoryId: number
+}
+export interface Results {
+  input: string,
+  categoryid:number,
+  gameid:number,
+  userid: string
 }
 function App() {
   const [gameNum, setGameNum] = useState<number>(0);
   const [gameOver, setGameOver] = useState<boolean>(true);
 
   const [letter, setLetter] = useState<string>("");
-  const [response, setResponse] = useState("");
+  const [user, setUser] = useState("");
   const [answers, setAnswers] = useState<Answer[]>([] as Answer[]);
+  const [results, setResults] = useState<Results[]>();
 
  
   const ENDPOINT = "https://scattegories.herokuapp.com";
@@ -46,13 +54,14 @@ function App() {
     const socket = io(ENDPOINT);
     //@ts-ignore
     socket.on("FromAPI", data => {
-      setResponse(data);
+      // setResponse(data);
     });
   }, []);
 
   function gameIsOver() {
-    axios.post('/answers', answers);
+    axios.post('/answers', answers)
     setGameOver(true);
+    setAnswers([{userId: "", categoryId: 0, input: "getresults"}]);
   }
 
   function setAnswerAtIndex(answer: Answer) {
@@ -66,7 +75,7 @@ function App() {
     //@ts-ignore
     return list[gameNum].map((cat, index) => {
       return (
-        <CategoryList index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} /> 
+        <CategoryList userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} /> 
       );
     });
   };
@@ -93,7 +102,6 @@ function App() {
         <div className="left first">
           <h1>List #{gameNum}</h1>
           <div>
-           response: {response}
             <ol>{printList()}</ol>
           </div>
         </div>
@@ -110,12 +118,34 @@ function App() {
       </div>
     );
   };
-  if (gameOver)
+  function showResults() {
+    if(answers[0] && answers[0].input === "getresults") {
+     return <button onClick={()=> {
+      axios.get('/answers').then((response)=> {
+        setResults(response.data.response.results.results)
+      })
+     }}> See results </button>
+    }
+  }
+  function printResults() {
+    const resultsPerUser = results?.filter(result => result.userid === user);    console.log(resultsPerUser);
+    return resultsPerUser?.map(result => {
+      return (<div>{result.categoryid} : {result.input}</div>)
+    })
+  }
+  if (gameOver && !results)
     return (
       <div className="newGame">
+        <input onChange={(e)=> {
+          setUser(e.target.value)
+        }}></input>
         <button onClick={nextGame}>start game</button>
+        {showResults()}
       </div>
     );
+  else if(results) {
+    return <>{printResults()}</>
+  }
   else return <div className="App">{showGame()}</div>;
 }
 

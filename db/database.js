@@ -8,27 +8,22 @@ const client = new Client({
 });
 
 client.connect();
-
 module.exports = {
-  getAllAnswers: ()=> {
-    client.query('SELECT * FROM answers', (err, res) => {
-      console.log('query');
-      if (err) throw err;
-      for (let row of res.rows) {
-        console.log(JSON.stringify(row));
-      }
-      client.end();
-    });
+  getAllAnswers: async () => {
+    const response = await client.query('SELECT * FROM answers');
+    return { results: response ? response.rows : null };
   },
   addAnswers: async (body) => {
     let valueArray ="";
-    body.map((answer) => valueArray += '(1, 1, ' + answer.categoryId +", '" + answer.input  + "'),");
+    body.map((answer) => valueArray += 
+        "(1, '"+ answer.userId + "'," + answer.categoryId +", '" + answer.input  + "'),");
 
-    const query = 'INSERT INTO answers (gameId, userId, categoryId, input) VALUES '+valueArray.slice(0, valueArray.length - 1)+";"
-    console.log('query', query);
+    console.log(valueArray);
+    const query = 'INSERT INTO answers (gameId, userId, categoryId, input) VALUES '
+      + valueArray.slice(0, valueArray.length - 1)+";"
+
     await client.query(query, (err, res) => {
       if (err) throw err;
-      client.end();
     });
   }
 }
