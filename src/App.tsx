@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import data from "./categories.json";
-
+import { io } from "socket.io-client";
+import CategoryList from "./components/CategoryList";
+import Timer from "./components/Timer";
+import axios from "axios";
+import liljohn from "./lilJohn.svg";
 const letters = [
   "A",
   "B",
@@ -24,38 +28,55 @@ const letters = [
   "T",
   "W"
 ];
+export interface Answer {
+  userId: string,
+  input: string,
+  categoryId: number
+}
+export interface Results {
+  input: string,
+  categoryid:number,
+  gameid:number,
+  userid: string
+}
 function App() {
   const [gameNum, setGameNum] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(180);
   const [gameOver, setGameOver] = useState<boolean>(true);
+
   const [letter, setLetter] = useState<string>("");
+  const [user, setUser] = useState("");
+  const [answers, setAnswers] = useState<Answer[]>([] as Answer[]);
+  const [results, setResults] = useState<Results[]>();
 
+ 
+  const ENDPOINT = "https://scattegories.herokuapp.com";
+ 
   useEffect(() => {
+    const socket = io(ENDPOINT);
     //@ts-ignore
-    let interval = null;
-    if (!gameOver) {
-      interval = setInterval(() => {
-        setSeconds(seconds => seconds - 1);
-      }, 1000);
-    }
-    if (seconds === 0) {
-      setGameOver(true);
-      setLetter("");
-      setSeconds(180);
-    }
-    //@ts-ignore
-    return () => clearInterval(interval);
-  }, [gameOver, seconds, letter]);
+    socket.on("FromAPI", data => {
+      // setResponse(data);
+    });
+  }, []);
 
+  function gameIsOver() {
+    axios.post('/answers', answers)
+    setGameOver(true);
+    setAnswers([{userId: "", categoryId: 0, input: "getresults"}]);
+  }
+
+  function setAnswerAtIndex(answer: Answer) {
+   setAnswers((prevAnswer) => [
+     ...prevAnswer.filter((answer_loop) => answer_loop.categoryId !== answer.categoryId),
+     answer
+   ]);
+  }
   const printList = () => {
-    const list = data[gameNum];
-    const index = gameNum;
+    const list = data[gameNum - 1];
     //@ts-ignore
-    return list[index + 1].map((cat, index) => {
+    return list[gameNum].map((cat, index) => {
       return (
-        <li className="list-item" key={index}>
-          {cat}
-        </li>
+          <CategoryList userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} /> 
       );
     });
   };
@@ -68,6 +89,7 @@ function App() {
   const nextGame = () => {
     newLetter();
     setGameOver(false);
+    setResults(undefined)
     //start second count down;
     if (gameNum === 19) {
       setGameNum(0);
@@ -80,29 +102,72 @@ function App() {
     return (
       <div className="list">
         <div className="left first">
-          <h1>List #{gameNum + 1}</h1>
-          <div>
+          <div className="category-list">
+            <h1><img className="liljohn" src={liljohn}/>Round {gameNum}</h1>
             <ol>{printList()}</ol>
           </div>
         </div>
         <div className="left">
-          <h2>Letter</h2>
-          <div className="letter">{letter}</div>
+          <div className="letter">
+            <span>{letter}</span>
+          <Timer gameOver={gameOver} setGameOverCallback={gameIsOver}/>
         </div>
-        <div className="clear">
+        </div>
+      </div>
+    );
+  };
+  function showResults() {
+    if(answers[0] && answers[0].input === "getresults") {
+     return <button className="resultsButton" onClick={()=> {
+      axios.get('/answers').then((response)=> {
+        setResults(response.data.response.results.results)
+      })
+     }}> See results </button>
+    }
+  }
+  function printResults() {
+    const resultsPerUser = results?.filter(result => result.userid === user);    console.log(resultsPerUser);
+    return resultsPerUser?.map(result => {
+      return (<div className="resultsList">{result.categoryid} : {result.input}</div>)
+    })
+  }
+  if (gameOver && !results)
+    return (
+      <div className="newGame">
+        <h1>SCATTERGORIES</h1>
+        <h3><i>LABS EDITON</i></h3>
+        <div className="nameContainer">
+        <div className="nameEntry">Enter your name:</div>
+        <div className="inputName">
+          <input className="inputBox" onChange={(e)=> {
+            setUser(e.target.value)
+          }}></input>
+        </div>
+        </div>
+        <button onClick={nextGame}>Start</button>
+          {showResults()}
+      </div>
+    );
+  else if(results) {
+    return (
+      <div className="left first">
+        <div className="left category-list">
+          <h1><img className="liljohn" src={liljohn}/>Round {gameNum}</h1>
+          {printResults()}
+        </div>
+        <div className="left">
+          <div className="letter">
+            <span>{letter}</span>
+            <span className="timer">Times Up!</span>
+          </div>
+          <div className="clear">
           <button className="start-button" onClick={nextGame}>
             Next Game
           </button>
         </div>
       </div>
-    );
-  };
-  if (gameOver)
-    return (
-      <div className="newGame">
-        <button onClick={nextGame}>start game</button>
-      </div>
-    );
+      </div>)
+  }
   else return <div className="App">{showGame()}</div>;
 }
 
