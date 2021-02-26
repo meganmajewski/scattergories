@@ -1,5 +1,7 @@
-.App {
+body {
   text-align: center;
+  background: url("background.svg");
+  color: white;
 }
 .list {
   margin: 30px;
@@ -14,7 +16,17 @@
   margin-right: 150px;
 }
 .letter {
-  font-size: 2rem;
+  margin-top: 110px;
+  font-size: 3rem;
+  height: 200px;
+  width: 400px;
+  position: relative;
+  background: url("dice.svg") no-repeat;
+}
+.letter span {
+  position: absolute;
+  top: 70px;
+  left: 70px;
 }
 .list-item {
   line-height: 30px;
@@ -26,18 +38,92 @@
 }
 
 .newGame {
+  width: 450px;
+  margin: auto;
   margin-top: 50px;
-  display: flex;
-  align-items: row;
-  justify-content: center;
 }
 
 button,
 .start-button {
-  padding: 30px;
+  height: 40px;
+  width: 250px;
   border-radius: 4px;
-  font-size: 1rem;
   cursor: pointer;
-  background-color: white;
-  border: 2px solid gray;
+  background-color:#CEF0FF;
+  border: 0;
+  outline: 0;
+}
+
+.inputBox{
+  height: 30px;
+  width: 200px;
+}
+.nameEntry{
+  color:#CEF0FF;
+  margin-right: 10px;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.nameContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  align-items: center;
+}
+
+.category-list {
+  margin: 50px 100px;
+  color: black;
+  height: 860px;
+  width: 700px;
+  border-radius: 30px;
+  background-color: #FFFFFF;
+  box-shadow: 2px 3px 10px 0 rgba(0,0,0,0.3);
+  padding: 40px;
+}
+
+.category-list h1 {
+  text-align: left;
+}
+.category-list ol {
+  padding: 0;
+  margin: 0;
+}
+.category-list div {
+    border-bottom : 1px solid rgba(1,163,235,0.55);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.liljohn {
+  max-width: 40px;
+  max-height: 40px;
+  margin-right: 20px;
+}
+
+.category-input {
+  height: 40px;
+  width: 280px;
+  border: 1px solid #979797;
+  border-radius: 6px;
+}
+.left .timer {
+  position: absolute;
+  right: 0;
+  top: 70px;
+  text-align: right;
+}
+
+.resultsButton{
+  margin-top: 15px;
+}
+
+.resultsList{
+  
 }

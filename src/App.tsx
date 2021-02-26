@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 import CategoryList from "./components/CategoryList";
 import Timer from "./components/Timer";
 import axios from "axios";
+import liljohn from "./lilJohn.svg";
 const letters = [
   "A",
   "B",
@@ -75,7 +76,7 @@ function App() {
     //@ts-ignore
     return list[gameNum].map((cat, index) => {
       return (
-        <CategoryList userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} /> 
+          <CategoryList userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} /> 
       );
     });
   };
@@ -88,6 +89,7 @@ function App() {
   const nextGame = () => {
     newLetter();
     setGameOver(false);
+    setResults(undefined)
     //start second count down;
     if (gameNum === 19) {
       setGameNum(0);
@@ -100,27 +102,23 @@ function App() {
     return (
       <div className="list">
         <div className="left first">
-          <h1>List #{gameNum}</h1>
-          <div>
+          <div className="category-list">
+            <h1><img className="liljohn" src={liljohn}/>Round {gameNum}</h1>
             <ol>{printList()}</ol>
           </div>
         </div>
         <div className="left">
-          <h2>Letter</h2>
-          <div className="letter">{letter}</div>
+          <div className="letter">
+            <span>{letter}</span>
           <Timer gameOver={gameOver} setGameOverCallback={gameIsOver}/>
         </div>
-        <div className="clear">
-          <button className="start-button" onClick={nextGame}>
-            Next Game
-          </button>
         </div>
       </div>
     );
   };
   function showResults() {
     if(answers[0] && answers[0].input === "getresults") {
-     return <button onClick={()=> {
+     return <button className="resultsButton" onClick={()=> {
       axios.get('/answers').then((response)=> {
         setResults(response.data.response.results.results)
       })
@@ -130,21 +128,45 @@ function App() {
   function printResults() {
     const resultsPerUser = results?.filter(result => result.userid === user);    console.log(resultsPerUser);
     return resultsPerUser?.map(result => {
-      return (<div>{result.categoryid} : {result.input}</div>)
+      return (<div className="resultsList">{result.categoryid} : {result.input}</div>)
     })
   }
   if (gameOver && !results)
     return (
       <div className="newGame">
-        <input onChange={(e)=> {
-          setUser(e.target.value)
-        }}></input>
-        <button onClick={nextGame}>start game</button>
-        {showResults()}
+        <h1>SCATTERGORIES</h1>
+        <h3><i>LABS EDITON</i></h3>
+        <div className="nameContainer">
+        <div className="nameEntry">Enter your name:</div>
+        <div className="inputName">
+          <input className="inputBox" onChange={(e)=> {
+            setUser(e.target.value)
+          }}></input>
+        </div>
+        </div>
+        <button onClick={nextGame}>Start</button>
+          {showResults()}
       </div>
     );
   else if(results) {
-    return <>{printResults()}</>
+    return (
+      <div className="left first">
+        <div className="left category-list">
+          <h1><img className="liljohn" src={liljohn}/>Round {gameNum}</h1>
+          {printResults()}
+        </div>
+        <div className="left">
+          <div className="letter">
+            <span>{letter}</span>
+            <span className="timer">Times Up!</span>
+          </div>
+          <div className="clear">
+          <button className="start-button" onClick={nextGame}>
+            Next Game
+          </button>
+        </div>
+      </div>
+      </div>)
   }
   else return <div className="App">{showGame()}</div>;
 }

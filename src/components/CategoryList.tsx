@@ -11,7 +11,7 @@ export default function CategoryList(props: Props): JSX.Element {
     return (
     <div key={props.index}>
        {props.index}: {props.category}
-       <input type="text" onChange={(e)=> {
+       <input className="category-input" type="text" onChange={(e)=> {
             props.setAnswersCallback({userId: props.userId, input: e.target.value, categoryId: props.index})
             console.log(e)
        }}/>
