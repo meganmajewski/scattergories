@@ -134,8 +134,13 @@ function App() {
   if (gameOver && !results)
     return (
       <div className="newGame">
-        <h1>SCATTERGORIES</h1>
-        <h3><i>LABS EDITON</i></h3>
+        <div className="header">
+          <img src={liljohn}/>
+          <div className="titleContainer">
+            <h1>SCATTERGORIES</h1>
+            <h3><i>LABS EDITON</i></h3>
+          </div>
+        </div>
         <div className="nameContainer">
         <div className="nameEntry">Enter your name:</div>
         <div className="inputName">

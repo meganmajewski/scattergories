@@ -127,3 +127,15 @@ button,
 .resultsList{
   
 }
+.header {
+  display: flex;
+  flex-direction: row;
+}
+.header img {
+  max-width: 150px;
+}
+.titleContainer {
+  margin-left: 30px;
+  text-align: left;
+}
+
