@@ -135,4 +135,9 @@ button,
   margin-left: 30px;
   text-align: left;
 }
-
+.rulesLink{
+  color: #CEF0FF;
+}
+.rulesContainer{
+  padding-top: 10px;
+}

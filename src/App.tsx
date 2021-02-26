@@ -6,6 +6,7 @@ import CategoryList from "./components/CategoryList";
 import Timer from "./components/Timer";
 import axios from "axios";
 import liljohn from "./lilJohn.svg";
+
 const letters = [
   "A",
   "B",
@@ -35,7 +36,7 @@ export interface Answer {
 }
 export interface Results {
   input: string,
-  categoryid:number,
+  categoryid: number,
   gameid:number,
   userid: string
 }
@@ -148,8 +149,11 @@ function App() {
           }}></input>
         </div>
         </div>
+        <div>
         <button onClick={nextGame}>Start</button>
+        <div className="rulesContainer">New to Scattergories? Read Rules <a className="rulesLink" href="https://github.com/meganmajewski/scattergories/wiki/Rules-of-the-game/">Here</a></div>
           {showResults()}
+          </div>
       </div>
     );
   else if(results) {
