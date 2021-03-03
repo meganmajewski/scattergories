@@ -31,3 +31,17 @@ https://ford.invisionapp.com/share/5RFLPTQTPAZ
 ## Required Tools
 * Node v14+
 * NPM
+
+# Quick Start
+ ### Initial Setup
+  1. `cd web`
+  2. `yarn`
+
+ ### Web `https://localhost:3000` 
+  1. `cd web`
+  3. `yarn start-ui`
+
+ ### API `https://localhost:4001`
+  1. `cd web`
+  2. `yarn start-api`
+
