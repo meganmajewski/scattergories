@@ -20,14 +20,14 @@ The expectation is that scoring will be done via collaborative communication bet
 https://ford.invisionapp.com/share/5RFLPTQTPAZ
 
 # Tech Stack
-    * API - Node
-    * Web app - Create React App
-    * DB - Postgress on Heroku
-    * Hosting - Heroku
+* API - Node
+* Web app - Create React App
+* DB - Postgress on Heroku
+* Hosting - Heroku
 
 ## CI/CD
     Heroku is configured to deploy on all commits to main. Currently no Tests in plays before this deploy.
 
 ## Required Tools
-    * Node v14+
-    * NPM
+* Node v14+
+* NPM
