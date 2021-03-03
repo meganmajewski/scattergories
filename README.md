@@ -1,44 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project Overview
+![Image of Scattergories Logo](web/src/logo_2.png)
+Scattergories is a creative-thinking category-based party game.
 
-## Available Scripts
+For each round there will be a list of 10 catergories, and a randomly selected letter. Each player should fill out one answer per category that matches the letter. For example if the category is 
+```Type of animal``` and the letter is ```S``` the player would type ```Sloth```, or ```Snake```.
 
-In the project directory, you can run:
+You score 1 point for each answer that is unique from the other players in that round.
+You have the ability to score multipule points per answer if your answer contains more than one word that starts with that letter. 
 
-### `yarn start`
+For example:
+```Sea Slug``` is worth 2 points.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Motivation
+The motivation behind this project is to simulate the table-top Scattergories game, but in a virtual setting. We want to translate the joining and playing of the game to a virtual platform, but expect that all players in a round can some how communicate with each other during game play.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The expectation is that scoring will be done via collaborative communication between players, and will not be automated into this application.
 
-### `yarn test`
+# Designs
+https://ford.invisionapp.com/share/5RFLPTQTPAZ
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Tech Stack
+    * API - Node
+    * Web app - Create React App
+    * DB - Postgress on Heroku
+    * Hosting - Heroku
 
-### `yarn build`
+## CI/CD
+    Heroku is configured to deploy on all commits to main. Currently no Tests in plays before this deploy.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Required Tools
+    * Node v14+
+    * NPM
