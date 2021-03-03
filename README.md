@@ -1,5 +1,5 @@
 # Project Overview
-![Image of Scattergories Logo](web/src/logo_2.png)
+![Image of Scattergories Logo](web/src/logo_2.svg)
 Scattergories is a creative-thinking category-based party game.
 
 For each round there will be a list of 10 catergories, and a randomly selected letter. Each player should fill out one answer per category that matches the letter. For example if the category is 
