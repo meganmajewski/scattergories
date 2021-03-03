@@ -1,3 +1,5 @@
+// import database from "./db/database";
+const database = require('./db/database');
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");

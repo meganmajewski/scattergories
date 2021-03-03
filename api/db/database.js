@@ -25,5 +25,16 @@ module.exports = {
     await client.query(query, (err, res) => {
       if (err) throw err;
     });
+  },
+  getLetter: async ()=> {
+    const query = 'SELECT * FROM letter LIMIT 1';
+    const response = await client.query(query);
+    return response;
+  },
+  addLetter: async(body)=> {
+    const query = "INSERT INTO letters (letter) VALUES ( '" + body.letter + "');"
+    await client.query(query, (err, res) => {
+      if (err) throw err;
+    });
   }
 }

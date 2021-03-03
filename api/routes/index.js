@@ -2,6 +2,7 @@ const database = require('../db/database');
 const express = require("express");
 const router = express.Router();
 const path = require("path");
+const socketIo = require("socket.io");
 
 // express.use(express.static(path.join(__dirname, "build/")))
 router.get("/", (_, res) =>
@@ -34,7 +35,9 @@ router.post('/users', async (req, res) => {
     console.log(e);
   }
 })
-
+router.post('/letter',(req, res)=> {
+  database.addLetter(req.body)
+})
 router.get("/game", (req, res) => {
   res.send({ response: "I am alive" }).status(200);
 });

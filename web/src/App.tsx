@@ -85,9 +85,8 @@ function App() {
 
   const newLetter = () => {
     const letter = letters[gameNum];
-    const index = Math.floor(Math.random() * (20 - 1)) + 1;
+    // const index = Math.floor(Math.random() * (20 - 1)) + 1;
     setLetter(letter);
-
   };
   const nextGame = () => {
     newLetter();
@@ -105,11 +104,12 @@ function App() {
     return (
       <div className="list">
         <div className="logo-container">
-          <img src={logo}/>
+          <img src={logo} alt="Scattergories, FordLabs edition"/>
+
         </div>
         <div className="left first">
           <div className="category-list">
-            <h1><img className="liljohn" src={liljohn}/>Round {gameNum}</h1>
+            <h1><img className="liljohn" src={liljohn} alt="John Handy's head opening with squirrels coming out"/>Round {gameNum}</h1>
             <ol>{printList()}</ol>
           </div>
         </div>
@@ -141,7 +141,7 @@ function App() {
     return (
       <div className="newGame">
         <div className="header">
-          <img src={logo}/>
+          <img src={logo}  alt="Scattergories, FordLabs edition"/>
         </div>
         <div className="nameContainer">
         <div className="nameEntry">Enter your name:</div>
@@ -162,7 +162,7 @@ function App() {
     return (
       <div className="left first">
         <div className="left category-list">
-          <h1><img className="liljohn" src={liljohn}/>Round {gameNum}</h1>
+          <h1><img className="liljohn" src={liljohn} alt="John Handy's head opening with squirrels coming out"/>Round {gameNum}</h1>
           {printResults()}
         </div>
         <div className="left">
