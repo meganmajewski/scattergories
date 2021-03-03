@@ -4,14 +4,12 @@ const router = express.Router();
 const path = require("path");
 const socketIo = require("socket.io");
 
-// express.use(express.static(path.join(__dirname, "build/")))
 router.get("/", (_, res) =>
   res.sendFile(path.join(__dirname, "build", "index.html"))
 )
 router.get('/answers', async (_, res) => {
   try {
     const results = await database.getAllAnswers()
-    console.log(results);
     res.send({response: {results}}).status(200);
   } catch (e) {
     console.log(e)
@@ -35,10 +33,7 @@ router.post('/users', async (req, res) => {
     console.log(e);
   }
 })
-router.post('/letter',(req, res)=> {
-  database.addLetter(req.body)
-})
-router.get("/game", (req, res) => {
+router.get("/game", (_, res) => {
   res.send({ response: "I am alive" }).status(200);
 });
 module.exports = router;
