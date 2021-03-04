@@ -31,6 +31,7 @@ const letters = [
   "D",
 ];
 export interface Answer {
+  gameid: number,
   userId: string,
   input: string,
   categoryId: number
@@ -64,7 +65,7 @@ function App() {
   function gameIsOver() {
     axios.post('/answers', answers)
     setGameOver(true);
-    setAnswers([{userId: "", categoryId: 0, input: "getresults"}]);
+    setAnswers([{gameid: gameNum, userId: "", categoryId: 0, input: "getresults"}]);
   }
 
   function setAnswerAtIndex(answer: Answer) {
@@ -78,7 +79,7 @@ function App() {
     //@ts-ignore
     return list[gameNum].map((cat, index) => {
       return (
-          <CategoryList userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} /> 
+          <CategoryList gameid = {gameNum} userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} />
       );
     });
   };
@@ -93,11 +94,12 @@ function App() {
     setGameOver(false);
     setResults(undefined)
     //start second count down;
+    console.log("gameNum before update" + gameNum);
     if (gameNum === 19) {
       setGameNum(0);
       return;
     } else {
-      setGameNum(gameNum + 1);
+      setGameNum(prevState => prevState + 1)
     }
   };
   const showGame = () => {
@@ -132,7 +134,8 @@ function App() {
     }
   }
   function printResults() {
-    const resultsPerUser = results?.filter(result => result.userid === user);    console.log(resultsPerUser);
+
+    const resultsPerUser = results?.filter(result => result.userid === user && result.gameid === gameNum);    console.log(resultsPerUser);
     return resultsPerUser?.map(result => {
       return (<div className="resultsList">{result.categoryid} : {result.input}</div>)
     })

@@ -16,7 +16,7 @@ module.exports = {
   addAnswers: async (body) => {
     let valueArray ="";
     body.map((answer) => valueArray += 
-        "(1, '"+ answer.userId + "'," + answer.categoryId +", '" + answer.input  + "'),");
+        "('"+ answer.gameid + "', '"+ answer.userId + "'," + answer.categoryId +", '" + answer.input  + "'),");
 
     console.log(valueArray);
     const query = 'INSERT INTO answers (gameId, userId, categoryId, input) VALUES '
