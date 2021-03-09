@@ -7,6 +7,8 @@ import Timer from "./components/Timer";
 import axios from "axios";
 import liljohn from "./lilJohn.svg";
 import logo from "./logo_2.svg";
+import Answer from "./types/Answer";
+import Results from "./types/Results";
 
 const letters = [
   "M",
@@ -30,18 +32,7 @@ const letters = [
   "W",
   "D",
 ];
-export interface Answer {
-  gameid: number,
-  userId: string,
-  input: string,
-  categoryId: number
-}
-export interface Results {
-  input: string,
-  categoryid: number,
-  gameid:number,
-  userid: string
-}
+
 function App() {
   const [gameNum, setGameNum] = useState<number>(0);
   const [gameOver, setGameOver] = useState<boolean>(true);
