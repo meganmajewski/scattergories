@@ -94,7 +94,6 @@ function App() {
     setGameOver(false);
     setResults(undefined)
     //start second count down;
-    console.log("gameNum before update" + gameNum);
     if (gameNum === 19) {
       setGameNum(0);
       return;
