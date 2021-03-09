@@ -1,5 +1,5 @@
 import React from 'react';
-import { Answer } from '../App';
+import Answer from "../types/Answer";
 interface Props {
     gameid: number,
     index: number,
