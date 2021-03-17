@@ -8,7 +8,8 @@ import axios from "axios";
 import liljohn from "./lilJohn.svg";
 import logo from "./logo_2.svg";
 import Answer from "./types/Answer";
-import Results from "./types/Results";
+import Results from "./components/Results";
+
 
 const letters = [
   "M",
@@ -123,13 +124,7 @@ function App() {
      }}> See results </button>
     }
   }
-  function printResults() {
 
-    const resultsPerUser = results?.filter(result => result.userid === user && result.gameid === gameNum);    console.log(resultsPerUser);
-    return resultsPerUser?.map(result => {
-      return (<div className="resultsList">{result.categoryid} : {result.input}</div>)
-    })
-  }
   if (gameOver && !results)
     return (
       <div className="newGame">
@@ -153,23 +148,21 @@ function App() {
     );
   else if(results) {
     return (
-      <div className="left first">
-        <div className="left category-list">
-          <h1><img className="liljohn" src={liljohn} alt="John Handy's head opening with squirrels coming out"/>Round {gameNum}</h1>
-          {printResults()}
-        </div>
+      <>
+        <Results results={results} userId={user} gameNum={gameNum}/>
         <div className="left">
           <div className="letter">
             <span>{letter}</span>
             <span className="timer">Times Up!</span>
           </div>
           <div className="clear">
-          <button className="start-button" onClick={nextGame}>
-            Next Game
-          </button>
+            <button className="start-button" onClick={nextGame}>
+              Next Game
+            </button>
+          </div>
         </div>
-      </div>
-      </div>)
+    </>
+    )
   }
   else return <div className="App">{showGame()}</div>;
 }
