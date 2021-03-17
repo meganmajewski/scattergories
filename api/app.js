@@ -30,7 +30,7 @@ let letter = "";
 // let interval;
 const path = require("path");
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, "build/")))
+app.use(express.static("web/build", { root: '.' }))
 app.use(index);
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
