@@ -8,9 +8,9 @@ interface Props {
 }
 export default function ResultsList({results, userId, gameNum}: Props): JSX.Element {
     function printResults(): JSX.Element[] {
-        const resultsPerUser = results?.filter(result => result.userid === userId && result.gameid === gameNum);    console.log(resultsPerUser);
-        return resultsPerUser?.map(result => {
-          return (<div className="resultsList">{result.categoryid} : {result.input}</div>)
+        const resultsPerUser = results?.filter(result => result.userid === userId && result.gameid === gameNum);
+        return resultsPerUser?.map((result, key) => {
+          return (<div key={key} className="resultsList">{result.categoryid}: {result.input}</div>)
         })
       }
     return (

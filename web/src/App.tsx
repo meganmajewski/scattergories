@@ -8,7 +8,8 @@ import axios from "axios";
 import liljohn from "./lilJohn.svg";
 import logo from "./logo_2.svg";
 import Answer from "./types/Answer";
-import Results from "./components/Results";
+import Results from "./types/Results";
+import ResultsList from "./components/ResultsList";
 
 
 const letters = [
@@ -71,7 +72,7 @@ function App() {
     //@ts-ignore
     return list[gameNum].map((cat, index) => {
       return (
-          <CategoryList gameid = {gameNum} userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} />
+          <CategoryList key={index} gameid={gameNum} userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} />
       );
     });
   };
@@ -149,7 +150,7 @@ function App() {
   else if(results) {
     return (
       <>
-        <Results results={results} userId={user} gameNum={gameNum}/>
+        <ResultsList results={results} userId={user} gameNum={gameNum}/>
         <div className="left">
           <div className="letter">
             <span>{letter}</span>
