@@ -5,7 +5,7 @@ const path = require("path");
 const socketIo = require("socket.io");
 
 router.get("/", (_, res) =>
-  res.sendFile("app/web/build/index.html")
+  res.sendFile(path.join(__dirname, "../web/build", "index.html"))
 )
 router.get('/answers', async (_, res) => {
   try {
