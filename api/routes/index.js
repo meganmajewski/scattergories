@@ -13,9 +13,11 @@ router.get('/answers', async (_, res) => {
     res.send({response: {results}}).status(200);
   } catch (e) {
     console.log(e)
+    res.status(500)
   }
 }) 
 router.post('/answers', async (req, res) => {
+  console.log(req.body)
   try {
     await database.addAnswers(req.body)
     res.send().status(200);
