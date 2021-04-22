@@ -13,6 +13,7 @@ import ResultsList from "./components/ResultsList";
 
 
 const letters = [
+  "J",
   "M",
   "L",
   "T",
@@ -26,7 +27,6 @@ const letters = [
   "A",
   "H",
   "I",
-  "J",
   "P",
   "K",
   "N",
