@@ -110,7 +110,7 @@ function App() {
         <div className="left">
           <div className="letter">
             <span>{letter}</span>
-          <Timer gameOver={gameOver} setGameOverCallback={gameIsOver}/>
+            {!gameOver && <Timer setGameOverCallback={gameIsOver}/>}
         </div>
         </div>
       </div>
