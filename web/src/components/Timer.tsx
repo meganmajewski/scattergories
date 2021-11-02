@@ -12,7 +12,7 @@ export default function Timer({setGameOverCallback}: Props): JSX.Element {
             setGameOverCallback();
           }
           return () => { if(interval) clearInterval(interval) };
-    }, [seconds]);
+    }, [seconds, setGameOverCallback]);
 
     return (
       <div className="timer">

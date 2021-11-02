@@ -10,6 +10,7 @@ import logo from "./logo_2.svg";
 import Answer from "./types/Answer";
 import Results from "./types/Results";
 import ResultsList from "./components/ResultsList";
+import StartPage from "./components/StartPage";
 
 
 const letters = [
@@ -82,7 +83,8 @@ function App() {
     // const index = Math.floor(Math.random() * (20 - 1)) + 1;
     setLetter(letter);
   };
-  const nextGame = () => {
+  const nextGame = (user: string) => {
+    setUser(user);
     newLetter();
     setGameOver(false);
     setResults(undefined)
@@ -99,7 +101,6 @@ function App() {
       <div className="list">
         <div className="logo-container">
           <img src={logo} alt="Scattergories, FordLabs edition"/>
-
         </div>
         <div className="left first">
           <div className="category-list">
@@ -108,7 +109,7 @@ function App() {
           </div>
         </div>
         <div className="left">
-          <div className="letter">
+          <div className="letter" data-testid="letter">
             <span>{letter}</span>
             {!gameOver && <Timer setGameOverCallback={gameIsOver}/>}
         </div>
@@ -128,24 +129,7 @@ function App() {
 
   if (gameOver && !results)
     return (
-      <div className="newGame">
-        <div className="header">
-          <img src={logo}  alt="Scattergories, FordLabs edition"/>
-        </div>
-        <div className="nameContainer">
-        <div className="nameEntry">Enter your name:</div>
-        <div className="inputName">
-          <input className="inputBox" onChange={(e)=> {
-            setUser(e.target.value)
-          }}></input>
-        </div>
-        </div>
-        <div>
-        <button onClick={nextGame}>Start</button>
-        <div className="rulesContainer">New to Scattergories? Read Rules <a className="rulesLink" href="https://github.com/meganmajewski/scattergories/wiki/Rules-of-the-game/">Here</a></div>
-          {showResults()}
-          </div>
-      </div>
+      <StartPage nextGame={nextGame}/>
     );
   else if(results) {
     return (
@@ -157,7 +141,7 @@ function App() {
             <span className="timer">Times Up!</span>
           </div>
           <div className="clear">
-            <button className="start-button" onClick={nextGame}>
+            <button className="start-button" onClick={()=> nextGame(user)}>
               Next Game
             </button>
           </div>
