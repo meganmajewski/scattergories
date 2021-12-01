@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import data from "./categories.json";
-import { io } from "socket.io-client";
-import CategoryList from "./components/CategoryList";
-import Timer from "./components/Timer";
 import axios from "axios";
-import liljohn from "./lilJohn.svg";
-import logo from "./logo_2.svg";
+
 import Answer from "./types/Answer";
 import Results from "./types/Results";
 import ResultsList from "./components/ResultsList";
 import StartPage from "./components/StartPage";
+import Game from "./components/Game";
+
 
 
 const letters = [
@@ -48,18 +45,19 @@ function App() {
  
   const ENDPOINT = "https://scattegories.herokuapp.com";
  
-  useEffect(() => {
-    const socket = io(ENDPOINT);
-    //@ts-ignore
-    socket.on("FromAPI", data => {
+  // useEffect(() => {
+  //   const socket = io(ENDPOINT);
+  //   //@ts-ignore
+  //   socket.on("FromAPI", data => {
 
-    });
-  }, []);
+  //   });
+  // }, []);
 
   function gameIsOver() {
     axios.post('/answers', answers)
     setGameOver(true);
-    setAnswers([{gameid: gameNum, userId: "", categoryId: 0, input: "getresults"}]);
+    // setAnswers([{gameid: gameNum, userId: "", categoryId: 0, input: "getresults"}]);
+    showResults();
   }
 
   function setAnswerAtIndex(answer: Answer) {
@@ -68,15 +66,7 @@ function App() {
      answer
    ]);
   }
-  const printList = () => {
-    const list = data[gameNum - 1];
-    //@ts-ignore
-    return list[gameNum].map((cat, index) => {
-      return (
-          <CategoryList key={index} gameid={gameNum} userId={user} index={index + 1} category={cat} setAnswersCallback={setAnswerAtIndex} />
-      );
-    });
-  };
+
 
   const newLetter = () => {
     const letter = letters[gameNum];
@@ -96,41 +86,24 @@ function App() {
       setGameNum(prevState => prevState + 1)
     }
   };
-  const showGame = () => {
-    return (
-      <div className="list">
-        <div className="logo-container">
-          <img src={logo} alt="Scattergories, FordLabs edition"/>
-        </div>
-        <div className="left first">
-          <div className="category-list">
-            <h1><img className="liljohn" src={liljohn} alt="John Handy's head opening with squirrels coming out"/>Round {gameNum}</h1>
-            <ol>{printList()}</ol>
-          </div>
-        </div>
-        <div className="left">
-          <div className="letter" data-testid="letter">
-            <span>{letter}</span>
-            {!gameOver && <Timer setGameOverCallback={gameIsOver}/>}
-        </div>
-        </div>
-      </div>
-    );
-  };
+
   function showResults() {
-    if(answers[0] && answers[0].input === "getresults") {
-     return <button className="resultsButton" onClick={()=> {
-      axios.get('/answers').then((response)=> {
-        setResults(response.data.response.results.results)
-      })
-     }}> See results </button>
+    if(answers[0]) {
+      return <button className="resultsButton" onClick={()=> {
+       axios.get('/answers').then((response)=> {
+         setResults(response.data.response.results.results)
+       })
+      }}> See results </button>
     }
   }
 
-  if (gameOver && !results)
-    return (
-      <StartPage nextGame={nextGame}/>
+  if (gameOver && !results)  {
+    return ( <>
+        <StartPage nextGame={nextGame}/>
+        {showResults()}
+      </>
     );
+  }
   else if(results) {
     return (
       <>
@@ -149,7 +122,7 @@ function App() {
     </>
     )
   }
-  else return <div className="App">{showGame()}</div>;
+  else return <div className="App"><Game gameNum={gameNum} userId={user} letter={letter} setAnswerAtIndex={setAnswerAtIndex} gameIsOver={gameOver} setGameOverCallback={()=> setGameOver(true)}/></div>;
 }
 
 export default App;

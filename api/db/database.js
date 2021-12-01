@@ -18,7 +18,6 @@ module.exports = {
     body.map((answer) => valueArray += 
         "('"+ answer.gameid + "', '"+ answer.userId + "'," + answer.categoryId +", '" + answer.input  + "'),");
 
-    console.log(valueArray);
     const query = 'INSERT INTO answers (gameId, userId, categoryId, input) VALUES '
       + valueArray.slice(0, valueArray.length - 1)+";"
 
